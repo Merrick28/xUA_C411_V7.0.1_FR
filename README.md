@@ -5,7 +5,7 @@ Discord support https://discord.gg/QHHAZu7e2A
 
 *“This is a modified version of the Upload Assistant project and is not
 affiliated with or endorsed by Audionut.”*
-This repo is temporary and exist ONLY to distribute Audionut/Upload-Assistant V7.0.1 + C411.py and FRENCH.py 
+This repo is temporary(3 Days) and exist ONLY to distribute Audionut/Upload-Assistant V7.0.1 + C411.py and FRENCH.py 
 
 A simple tool to take the work out of uploading.
 
@@ -30,45 +30,6 @@ Many thanks to all who have contributed.
   - Adds to your client with fast resume, seeding instantly (rtorrent/qbittorrent/deluge/watch folder).
   - ALL WITH MINIMAL INPUT!
   - Currently works with .mkv/.mp4/Blu-ray/DVD/HD-DVDs.
-
-## Supported Sites:
-
-|Name|Acronym|Name|Acronym|
-|-|:-:|-|:-:|
-|Aither|AITHER|Alpharatio|AR|
-|Amigos-Share|ASC|Anthelion|ANT|
-|AsianCinema|ACM|Aura4K|A4K|
-|AvistaZ|AZ|Beyond-HD|BHD|
-|BitHDTV|BHDTV|Blutopia|BLU|
-|BrasilJapão-Share|BJS|BrasilTracker|BT|
-|CapybaraBR|CBR|CinemaZ|CZ|
-|Cinematik|TIK|DarkPeers|DP|
-|DigitalCore|DC|Emuwarez|EMUW|
-|FearNoPeer|FNP|FileList|FL|
-|Friki|FRIKI|FunFile|FF|
-|GreatPosterWall|GPW|hawke-uno|HUNO|
-|HDBits|HDB|HD-Space|HDS|
-|HD-Torrents|HDT|HomieHelpDesk|HHD|
-|ImmortalSeed|IS|InfinityHD|IHD|
-|ItaTorrents|ITT|LastDigitalUnderground|LDU|
-|Lat-Team|LT|Locadora|LCD|
-|LST|LST|Luminarr|LUME|
-|MoreThanTV|MTV|Nebulance|NBL|
-|OldToonsWorld|OTW|OnlyEncodes+|OE|
-|PassThePopcorn|PTP|PolishTorrent|PTT|
-|Portugas|PT|PrivateHD|PHD|
-|PTerClub|PTER|PTSKIT|PTS|
-|Racing4Everyone|R4E|Rastastugan|RAS|
-|ReelFLiX|RF|RetroFlix|RTF|
-|Samaritano|SAM|seedpool|SP|
-|ShareIsland|SHRI|SkipTheCommerials|STC|
-|SpeedApp|SPD|Swarmazon|SN|
-|The Leach Zone|TLZ|TheOldSchool|TOS|
-|ToTheGlory|TTG|TorrentHR|THR|
-|Torrenteros|TTR|TorrentLeech|TL|
-|TVChaosUK|TVC|ULCX|ULCX|
-|UTOPIA|UTP|YOiNKED|YOINK|
-|YUSCENE|YUS|||
 
 ## **Setup:**
    - **REQUIRES AT LEAST PYTHON 3.9 AND PIP3**
