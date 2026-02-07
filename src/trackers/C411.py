@@ -11,6 +11,7 @@ from src.trackers.COMMON import COMMON
 import aiofiles
 import asyncio
 import src.trackers.FRENCH as fr
+import unidecode
 from typing import Any, Callable, Optional, Union, cast
 Meta = dict[str, Any]
 Config = dict[str, Any]
@@ -350,7 +351,7 @@ class C411():
         headers = {
             "Authorization": f"Bearer {self.config['TRACKERS'][self.tracker]['api_key'].strip()}"}
         acm_name = await self.get_name(meta)
-        dot_name = acm_name["name"].replace(" ", ".")
+        dot_name = unidecode.unidecode(acm_name["name"].replace(" ", "."))
         response = None
         async with aiofiles.open(torrent_file_path, 'rb') as f:
             torrent_bytes = await f.read()

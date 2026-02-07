@@ -3,6 +3,7 @@ import asyncio
 import copy
 import os
 import sys
+import unidecode
 from collections.abc import Mapping, MutableMapping
 from typing import Any, Optional, cast
 
@@ -200,9 +201,9 @@ class TrackerStatusManager:
                             display_name: Optional[str] = None
                             if tracker_rename is not None:
                                 if isinstance(tracker_rename, dict) and 'name' in tracker_rename:
-                                    display_name = cast(str, tracker_rename['name'])
+                                    display_name = unidecode.unidecode(cast(str, tracker_rename['name']))
                                 elif isinstance(tracker_rename, str):
-                                    display_name = tracker_rename
+                                    display_name = unidecode.unidecode(tracker_rename)
 
                             if display_name is not None and display_name != "" and display_name != meta['name']:
                                 console.print(f"[bold yellow]{tracker_name} applies a naming change for this release: [green]{display_name}[/green][/bold yellow]")
