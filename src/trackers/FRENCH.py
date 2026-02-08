@@ -4,6 +4,7 @@ import re
 import httpx
 from data.config import config
 from src.console import console
+import unicodedata
 # UA 7.0.0
 
 
@@ -401,11 +402,23 @@ async def translate_genre(text: str) -> str:
         result.append(mapping.get(word, word))
     return ", ".join(result)
 
-# def normalize(value):
-#    if isinstance(value, tuple):
-#        return value[0]
-#    return value
 
+def clean_name(input_str: str) -> str:
+    normalized = unicodedata.normalize("NFKD", input_str)
+    invalid_char = set('<>:"/\\|?*')
+    result = []
+    for char in normalized:
+        # Skip accent marks
+        if unicodedata.category(char) == "Mn":
+            continue
+
+        # Skip invalid characters
+        if char in invalid_char:
+            continue
+
+        result.append(char)
+
+    return "".join(result)
 
 async def get_translation_fr(meta: dict[str, Any]) -> tuple[str, str]:
     """Get Spanish title if available and configured"""

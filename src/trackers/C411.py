@@ -284,9 +284,7 @@ class C411():
             exit()
         name_notag = name
         name = name_notag + tag
-        invalid = '<>:"/\\|?*'
-        for char in invalid:
-            name = name.replace(char, '-')
+        name = fr.clean_name(name)
 
         if meta['debug']:
             console.log("[cyan]get_name cat/type")
