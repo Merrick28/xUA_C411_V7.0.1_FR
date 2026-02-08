@@ -396,16 +396,20 @@ async def translate_genre(text: str) -> str:
         'War & Politics': 'Guerre & politique',
         'Western': 'Western'
     }
-
     result = []
+
     for word in map(str.strip, text.split(",")):
-        result.append(mapping.get(word, word))
+        if word in mapping:
+            result.append(mapping[word])
+        else:
+            result.append(f"*{word}*")
+
     return ", ".join(result)
 
 
 def clean_name(input_str: str) -> str:
     ascii_str = unidecode(input_str)
-    invalid_char = set('<>:"/\\|?*') #! . , : ; @ # $ % ^ & */ \" '_
+    invalid_char = set('<>"/\\|?*') #! . , : ; @ # $ % ^ & */ \" '_
     result = []
     for char in ascii_str:
         if char in invalid_char:

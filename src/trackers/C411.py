@@ -178,7 +178,7 @@ class C411():
         tag = str(meta.get('tag', ""))
         source = str(meta.get('source', ""))
         uhd = str(meta.get('uhd', ""))
-        hdr = str(meta.get('hdr', ""))
+        hdr = str(meta.get('hdr', "")).replace('HDR10+', 'HDR10PLUS')
         hybrid = 'Hybrid' if meta.get('webdv', "") else ""
         # if meta.get('manual_episode_title'):
         #    episode_title = str(meta.get('manual_episode_title', ""))
@@ -197,8 +197,8 @@ class C411():
             region = str(meta.get('region', "") or "")
             dvd_size = str(meta.get('dvd_size', ""))
         else:
-            video_codec = str(meta.get('video_codec', ""))
-            video_encode = str(meta.get('video_encode', ""))
+            video_codec = str(meta.get('video_codec', "")).replace('H.264', 'H264').replace('H.265', 'H265')
+            video_encode = str(meta.get('video_encode', "")).replace('H.264', 'H264').replace('H.265', 'H265')
         edition = str(meta.get('edition', ""))
         if 'hybrid' in edition.upper():
             edition = edition.replace('Hybrid', '').strip()
