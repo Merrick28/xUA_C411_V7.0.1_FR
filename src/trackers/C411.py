@@ -320,8 +320,20 @@ class C411():
 
         return True
 
-    async def search_existing(self, _meta: dict[str, Any], _disctype: str) -> list[str]:
-        console.print("[red]Dupes must be checked Manually")
+    async def search_existing(self, meta: dict[str, Any], _disctype: str) -> list[str]:
+        if meta['category'] == 'MOVIE':
+            if meta.get('mal_id'):
+                console.print(f"https://c411.org/torrents?q={meta['title']}%20{meta['year']}&cat=1&subcat=1")
+            else:
+                console.print(f"https://c411.org/torrents?q={meta['title']}%20{meta['year']}&cat=1&subcat=6")
+
+        elif meta['category'] == 'TV':
+
+            if meta.get('mal_id'):
+                console.print(f"https://c411.org/torrents?q={meta['title']}%20{meta['year']}%20{meta['season_int']}&cat=1&subcat=2")
+            else:
+                console.print(f"https://c411.org/torrents?q={meta['title']}%20{meta['year']}%20{meta['season_int']}&cat=1&subcat=7")
+
         return ['Dupes must be checked Manually']
     #
 #    curl -X POST "https://c411.org/api/torrents"
