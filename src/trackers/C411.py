@@ -26,7 +26,7 @@ class C411():
         self.upload_url = f'{self.base_url}/api/torrents'
         # self.requests_url = f'{self.base_url}/api/requests/filter'
         # self.search_url = f'{self.base_url}/api/torrents/filter'
-        self.torrent_url = f'{self.base_url}/api'
+        self.torrent_url = f'{self.base_url}/api/'
         self.banned_groups: list[str] = []
         pass
 
