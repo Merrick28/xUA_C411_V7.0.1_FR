@@ -508,11 +508,6 @@ async def get_desc_full(meta: dict[str, Any], tracker) -> str:
     service_longname = str(meta.get('service_longname', ""))
     season = str(meta.get('season_int', ''))
     episode = str(meta.get('episode_int', ''))
-    if meta.get("category") == "TV":
-        if season:
-            season = f"S{season}"
-        if episode:
-            episode = f"E{episode}"
 
     desc_parts = []
     # if meta['logo']:
@@ -522,8 +517,12 @@ async def get_desc_full(meta: dict[str, Any], tracker) -> str:
     desc_parts.append(
         f"[b][font=Verdana][color=#3d85c6][size=29]{title}[/size][/font]")
     desc_parts.append(f"[size=18]{year}[/size][/color][/b]")
-    if meta['category'] == 'TV':
+    
+    if meta['category'] == "TV":
+        season = f"S{season}" if season else ""
+        episode = f"E{episode}" if episode else ""
         desc_parts.append(f"[b][size=18]{season}{episode}[/size][/b]")
+
     desc_parts.append(
         f"[font=Verdana][size=13][b][color=#3d85c6]Titre original :[/color][/b] [i]{original_title}[/i][/size][/font]")
     desc_parts.append(
