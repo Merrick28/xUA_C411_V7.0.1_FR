@@ -72,17 +72,17 @@ class C411():
             if item['Language'] == "en" or item['Language'] == "en-us" or item['Language'] == "en-gb":
                 eng = True
 
-        if eng and not vff or vfq:  # vo
-            obj1 = obj1 + "1,"
-
-        # VO VOSTFR
-        if vff and vfq:
-            obj1.append(4)
-        if vfq:
-            obj1.append(5)
-        if vff:
-            obj1.append(2)
-
+        if eng:
+            obj1.append(1)
+            if vff or vfq:
+                obj1.append(4) # Multi
+        else:
+            if vff and vfq:
+                obj1.append(4)
+            if vfq:
+                obj1.append(6)
+            if vff:
+                obj1.append(2)
         # set quality
         if meta['is_disc'] == 'BDMV':
             if meta['resolution'] == '2160p':
