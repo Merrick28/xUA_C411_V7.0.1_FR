@@ -2040,7 +2040,7 @@ if __name__ == "__main__":
                         console.print("[yellow]Cleanup timed out, forcing exit...[/yellow]")
 
                 asyncio.run(_cleanup_with_timeout())
-            except:
+            except Exception:
                 pass  # Cleanup errors during shutdown are expected
 
         gc.collect()
