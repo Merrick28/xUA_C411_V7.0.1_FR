@@ -200,6 +200,9 @@ class C411():
         else:
             video_codec = str(meta.get('video_codec', ""))
             video_encode = str(meta.get('video_encode', ""))
+        # rename video_codec if non standard
+        video_codec = video_codec.replace('H.264','H264')
+        video_codec = video_codec.replace('HDR10+', 'HDR10PLUS')
         edition = str(meta.get('edition', ""))
         if 'hybrid' in edition.upper():
             edition = edition.replace('Hybrid', '').strip()
