@@ -149,8 +149,24 @@ class C411():
         # hdlight 1080
         # hdlight 720
         # vcd/vhs
-
-        return json.dumps({"1": [obj1], "2": obj2})
+        options_dict = {}
+        options_dict[1] = [obj1]
+        options_dict[2] = [obj2]
+        # Let's see if it's a tv show
+        if meta['category'] == 'TV':
+            # Let's check for season
+            if meta.get('no_season', False) is False:
+                season = str(meta.get('season_int', ''))
+                if season:
+                    options_dict[7] = 120 + int(season)
+            # Episode
+            episode = str(meta.get('episode_int', ''))
+            if episode:
+                options_dict[6] = 96 + int(episode)
+            else:
+                # pas d'épisode, on suppose que c'est une saison complete ? 
+                options_dict[6] = 96
+        return json.dumps(options_dict)
 
     # https://c411.org/wiki/nommage
     async def get_name(self, meta: Meta) -> dict[str, str]:
@@ -200,9 +216,6 @@ class C411():
         else:
             video_codec = str(meta.get('video_codec', "")).replace('H.264', 'H264').replace('H.265', 'H265')
             video_encode = str(meta.get('video_encode', "")).replace('H.264', 'H264').replace('H.265', 'H265')
-        # rename video_codec if non standard
-        video_codec = video_codec.replace('H.264','H264')
-        video_codec = video_codec.replace('HDR10+', 'HDR10PLUS')
         edition = str(meta.get('edition', ""))
         if 'hybrid' in edition.upper():
             edition = edition.replace('Hybrid', '').strip()
