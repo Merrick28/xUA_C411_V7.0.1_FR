@@ -179,7 +179,7 @@ class C411():
         tag = str(meta.get('tag', ""))
         source = str(meta.get('source', ""))
         uhd = str(meta.get('uhd', ""))
-        hdr = str(meta.get('hdr', ""))
+        hdr = str(meta.get('hdr', "")).replace('HDR10+', 'HDR10PLUS')
         hybrid = 'Hybrid' if meta.get('webdv', "") else ""
         # if meta.get('manual_episode_title'):
         #    episode_title = str(meta.get('manual_episode_title', ""))
@@ -198,8 +198,8 @@ class C411():
             region = str(meta.get('region', "") or "")
             dvd_size = str(meta.get('dvd_size', ""))
         else:
-            video_codec = str(meta.get('video_codec', ""))
-            video_encode = str(meta.get('video_encode', ""))
+            video_codec = str(meta.get('video_codec', "")).replace('H.264', 'H264').replace('H.265', 'H265')
+            video_encode = str(meta.get('video_encode', "")).replace('H.264', 'H264').replace('H.265', 'H265')
         edition = str(meta.get('edition', ""))
         if 'hybrid' in edition.upper():
             edition = edition.replace('Hybrid', '').strip()
@@ -285,9 +285,7 @@ class C411():
             exit()
         name_notag = name
         name = name_notag + tag
-        invalid = '<>:"/\\|?*'
-        for char in invalid:
-            name = name.replace(char, '-')
+        name = fr.clean_name(name)
 
         if meta['debug']:
             console.log("[cyan]get_name cat/type")
@@ -323,8 +321,20 @@ class C411():
 
         return True
 
-    async def search_existing(self, _meta: dict[str, Any], _disctype: str) -> list[str]:
-        console.print("[red]Dupes must be checked Manually")
+    async def search_existing(self, meta: dict[str, Any], _disctype: str) -> list[str]:
+        if meta['category'] == 'MOVIE':
+            if meta.get('mal_id'):
+                console.print(f"https://c411.org/torrents?q={meta['title']}%20{meta['year']}&cat=1&subcat=1")
+            else:
+                console.print(f"https://c411.org/torrents?q={meta['title']}%20{meta['year']}&cat=1&subcat=6")
+
+        elif meta['category'] == 'TV':
+
+            if meta.get('mal_id'):
+                console.print(f"https://c411.org/torrents?q={meta['title']}%20{meta['year']}%20{meta['season_int']}&cat=1&subcat=2")
+            else:
+                console.print(f"https://c411.org/torrents?q={meta['title']}%20{meta['year']}%20{meta['season_int']}&cat=1&subcat=7")
+
         return ['Dupes must be checked Manually']
     #
 #    curl -X POST "https://c411.org/api/torrents"
