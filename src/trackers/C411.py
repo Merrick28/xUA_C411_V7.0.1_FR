@@ -55,7 +55,7 @@ class C411():
     # unknow  return type
 
     async def get_option_tag(self, meta: Meta):
-        obj1 = ""
+        obj1 = []
         obj2 = None
         vff = None
         vfq = None
@@ -77,11 +77,11 @@ class C411():
 
         # VO VOSTFR
         if vff and vfq:
-            obj1 = obj1 + "4,"
+            obj1.append(4)
         if vfq:
-            obj1 = obj1 + "5,"
+            obj1.append(5)
         if vff:
-            obj1 = obj1 + "2"
+            obj1.append(2)
 
         # set quality
         if meta['is_disc'] == 'BDMV':
@@ -150,7 +150,7 @@ class C411():
         # hdlight 720
         # vcd/vhs
 
-        return json.dumps({"1": [obj1], "2": obj2})
+        return json.dumps({"1": obj1, "2": obj2})
 
     # https://c411.org/wiki/nommage
     async def get_name(self, meta: Meta) -> dict[str, str]:
